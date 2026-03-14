@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Simulador de Preço do Bilhete Único de São Paulo</title>
+</head>
+
+<body>
+    <header>
+        <h1>3. Simulador de Preço do Bilhete Único de São Paulo</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Crie um pequeno simulador de preço de passagem de Bilhete Único de São Paulo num programa, o qual: <br><br>
+
+            a) Tenha uma combo para indicar o tipo de passageiro, com os itens<br><br>
+
+            Comum<br>
+            Estudante<br>
+            Idoso/PNE<br><br>
+
+            b) Tenha uma outra combo, para indicar o tipo de passagem, com os itens<br><br>
+
+            Passagem única<br>
+            Passagem integração<br><br>
+
+            c) Ao clicar num botão "Simular preço", considere que o preço unitário de uma passagem única é R$4,40 e que a integração é R$5,90 para fazer os cálculos necessários para exibir uma frase como esta: <br><br>
+
+            Valor da passagem escolhida: R$X,XX<br><br>
+
+            d) Considere ainda que um estudante tem 50% de desconto e idoso/PNE possuem gratuidade em qualquer tipo de passagem
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Selecione o tipo de passageiro</label> <br>
+        <select name="tipo_passageiro" id="tipo_passageiro">
+            <option value="comum">Comum</option>
+            <option value="estudante">Estudante</option>
+            <option value="idosoPNE">Idoso/PNE</option>
+        </select> <br>
+
+        <label>Selecione o tipo da passagem</label> <br>
+        <select name="tipo_passagem" id="tipo_passagem">
+            <option value="unica">Passagem única</option>
+            <option value="integracao">Passagem integração</option>
+        </select> <br>
+
+        <button onclick="avaliar()">Simular preço</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function avaliar(){
+        var passageiro = tipo_passageiro.value;
+        var passagem = tipo_passagem.value;
+        var valorPassagem = 0;
+        var total = 0;
+
+        if (passagem == "unica") {
+            valorPassagem = 4.40;
+
+        } else {
+            valorPassagem = 5.90;
+        }
+
+        // Verifcar o valor com o desconto aplicado
+        if (passageiro  == "comum") {
+            total = valorPassagem;
+        }
+        else if (passageiro == "estudante") {
+            total = valorPassagem / 2;
+        }
+
+        div_mensagem.innerHTML += `<p>Valor da passagem escolhida: R$ ${total.toFixed(2).replace('.', ',')}</p>`;
+    }
+</script>

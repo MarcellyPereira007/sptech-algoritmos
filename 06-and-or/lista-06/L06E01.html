@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Sistema de Avaliação de Atendimento</title>
+</head>
+
+<body>
+    <header>
+        <h1>1. Sistema de Avaliação de Atendimento: Dê Sua Nota!</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Crie um pequeno sistema de avaliação de atendimento, o qual: <br><br>
+
+            a) Pergunte a nota para o atendimento <br><br>
+
+            b) Ao clicar num botão "Avaliar atendimento", pode uma dessas frases abaixo do botão: <br><br>
+
+                b.1) "Nota inválida", caso a nota não esteja entre 0 e 10 <br><br>
+
+                b.2) "Não aprovado", caso a nota for entre 0 e menor que 5 <br><br>
+
+                b.3) "Neutro", caso a nota for entre 5 e 6 <br><br>
+
+                b.4) "Aprovado", caso a nota for mais que 6
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Deixe sua note para o atendimento:</label> <br>
+        <input type="number" id="ipt_nota" placeholder="Digite a nota aqui"><br><br>
+        <button onclick="avaliar()">Avaliar atendimento</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    function avaliar() {
+        let nota = Number(ipt_nota.value);
+        let mensagem = "";
+
+        if (nota < 0 || nota > 10) {
+            mensagem = "Nota inválida";
+        }
+        else {
+            if (nota < 5) {
+                mensagem = "Não aprovado";
+            }
+            else if (nota >= 5 || nota <= 6) {
+                mensagem = "Neutro";
+            }
+            else {
+                mensagem = "Aprovado";
+            }
+        }
+
+        div_mensagem.innerHTML = mensagem;
+    }
+</script>

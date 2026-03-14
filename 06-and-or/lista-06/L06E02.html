@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Simulador de Preferências de Compras</title>
+</head>
+
+<body>
+    <header>
+        <h1>2. Simulador de Preferências de Compras: Será que Robervaldo Gostaria?</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Imagine que Robervaldo está buscando um novo celular. Ele tem algumas preferências específicas para a escolha de modelo. <br><br>
+
+            Robervaldo prefere celulares com tela grande (acima de 6.5 polegadas) e que sejam da cor preta ou prata.<br><br>
+
+            Com base nessas informações, crie um simulador no qual:<br><br>
+
+            a) Solicite o tamanho da tela do celular encontrado.<br><br>
+
+            b) Solicite a cor do celular encontrado, dentre as opções:<br><br>
+
+            Preto<br>
+            Prata<br>
+            Azul<br>
+            Vermelho<br><br>
+            c) Ao clicar em "Será que ele gosta?", mostre, abaixo:<br><br>
+
+            A imagem de uma pessoa feliz, caso as características do celular coincidam com as preferências de
+            Robervaldo.<br>
+            Ou a imagem de uma pessoa decepcionada, caso contrário.
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Insira o tamanho da tela em polegadas</label> <br>
+        <input type="number" id="ipt_polegadas" placeholder="Ex: 6.5"><br><br>
+
+        <label>Selecione a cor do celular</label> <br>
+        <select name="cor" id="ipt_cor">
+            <option value="preto">Preto</option>
+            <option value="prata">Prata</option>
+            <option value="azul">Azul</option>
+            <option value="vermelho">Vermelho</option>
+        </select><br><br>
+        <button onclick="avaliar()">Será que ele gosta?</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    function avaliar() {
+        let polegadas = Number(ipt_polegadas.value);
+        let cor = ipt_cor.value;
+
+        if (polegadas > 6.5  && cor == "preto" || cor == "prata"){
+            div_mensagem.innerHTML = `<img src="https://media.tenor.com/TYGaQfylEvQAAAAi/auque-7-dias-tarde.gif" alt="Pessoa feliz e satisfeita"><p>Sim, ele gosta</p>`;
+        } else {
+            div_mensagem.innerHTML = `<img src="https://media.tenor.com/OA8KFcZxPjsAAAAi/sad-emoji.gif" alt="Pessoa infeliz e insatisfeita"><p>Não, ele não gosta</p>`;
+        }
+    }
+</script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Autenticação Segura: Acesso ao Banco Melete</title>
+</head>
+
+<body>
+    <header>
+        <h1>4. Autenticação Segura: Acesso ao Banco Melete</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Um novo banco eletrônico, o Banco Melete possui um sistema diferenciado de autenticação no qual pede um login, uma senha e uma 3ª informação pessoal, que pode ser o ano de nascimento ou o nome do animal de estimação do cliente. Crie um protótipo que simule a autenticação de um determinado cliente, o qual: <br><br>
+
+            a) Solicite o login, a senha e a informação pessoal ao usuário <br><br>
+
+            b) Ao clicar num botão "Autenticar", exiba uma dessas frases abaixo do botão: <br><br>
+
+                b.1.) "Usuário autenticado", caso o login seja "ana", a senha "braga" e a informação pessoal for ou "1949" ou "louro josé" <br><br>
+
+                b.2.) "Falha na autenticação", caso as regras de verificação em b.1) falhem 
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Digite o seu login</label> <br>
+        <input type="text" id="ipt_login" placeholder="Digite o login aqui"><br><br>
+
+        <label>Digite sua senha</label> <br>
+        <input type="password" id="ipt_senha" placeholder="Digite a senha aqui"><br><br>
+
+        <label>Selecione o tipo de verificação</label> <br>
+        <select onchange="selecionar()" name="tipo_verificacao" id="tipo_verificacao">
+            <option value="escolha">Escolha uma opção</option>
+            <option value="ano">Ano de nascimento</option>
+            <option value="pet">Nome do pet</option>
+        </select> <br>
+
+        <div id="div_verificacao"></div>
+
+        <button onclick="avaliar()">Autenticar</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function selecionar(){
+        var verificacao = tipo_verificacao.value;
+
+        div_verificacao.innerHTML = "";
+
+        if (verificacao == "ano") {
+            div_verificacao.innerHTML = `<label>Digite o ano do seu nascimento</label> <br>
+        <input type="text" id="ipt_ano" placeholder="Digite o ano aqui"><br><br>`;
+        } else if (verificacao == "pet"){
+            div_verificacao.innerHTML = `<label>Digite o nome do seu pet</label> <br>
+        <input type="text" id="ipt_pet" placeholder="Digite o nome aqui"><br><br>`;
+        }
+    }
+
+    function avaliar(){
+         var login = document.getElementById("ipt_login").value;
+         var senha = document.getElementById("ipt_senha").value;
+         var verificacao = document.getElementById("tipo_verificacao").value;
+
+        // Tem algo no nesse id? Se tiver, pegue o valor. se não tiver, deixa vazio
+         var ano = document.getElementById("ipt_ano") ? document.getElementById("ipt_ano").value : "";
+         var pet = document.getElementById("ipt_pet") ? document.getElementById("ipt_pet").value.toLowerCase() : "";
+
+            if (login.toLowerCase() == "ana" && senha.toLowerCase() == "braga" && (ano == "1949" || pet == "louro josé") ) {
+                div_mensagem.innerHTML = `<p>Usuário autenticado</p>`;
+            } else if (verificacao !== "pet" && verificacao !== "ano") {
+                alert("Selecione um tipo de verificação");
+            } else {
+                div_mensagem.innerHTML = `<p>Falha na autenticação</p>`;
+            }
+    }
+</script>
