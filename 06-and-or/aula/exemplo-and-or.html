@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="ipt_idade">
+    <input type="text" id="ipt_qtd_pets">
+
+    <button onclick="analisar()">Analisar</button>
+
+    <div id="div_resultado"></div>
+</body>
+
+<script>
+
+    //Se o cliente é maior de idade E possui mais de 3 pets, pode pegar o crédito Pet Feliz!
+    function analisar() {
+        let idade = Number(ipt_idade.value);
+        let qtd_pets = Number(ipt_qtd_pets.value);
+
+        //Sem AND
+        if (idade >= 18) {
+            if (qtd_pets >= 3) {
+                div_resultado.innerHTML = "Você tem direito ao crédito Pet Feliz!"
+            }
+        }
+
+        //Com AND
+        if (idade >= 18 && qtd_pets >= 3) {
+            div_resultado.innerHTML = "Você tem direito ao crédito Pet Feliz!"
+        }
+
+        //Um cenário mais real:
+        let loginDigitado = "bob-admin"
+        let senhaDigitada = "123"
+
+        let loginCorreto = "bob-admin"
+        let senhaCorreta = "senhaForte" 
+     
+        //2 maneiras de autenticar, com && ou ||
+        if (loginDigitado != loginCorreto || senhaDigitada != senhaCorreta) {
+            //Exibir "Você não tem permissão!"
+        }else{
+            //Exibir "Pode entrar!"
+        }
+
+        if (loginDigitado == loginCorreto && senhaDigitada == senhaCorreta) {
+            //Exibir "Pode entrar!"
+        }else{
+            //Exibir "Você não tem permissão!"
+        }
+    }
+</script>
+
+</html>

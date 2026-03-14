@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Meninas superpoderosas Z</title>
+    <style>
+        @font-face {
+        font-family: 'FonteMeninas';
+        src: url("img/PowerPufffont.ttf");
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: repeating-linear-gradient(90deg, #ffb6c1, #ffb6c1 30px, #fff0f5 30px, #fff0f5 60px);
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'FonteMeninas', Arial, sans-serif;
+            color: #cc4b7d;
+        }
+
+        h3 {
+            font-family: 'FonteMeninas', Arial, sans-serif;
+            color: #cc4b7d;
+        }
+
+        .caixa {
+            background-color: #fff0f5;
+            width: 80%;
+            margin: 20px auto;
+            border-radius: 15px;
+            border: 2px solid #ff69b4;
+        }
+
+        #logo {
+            margin: 10px auto;
+        }
+
+        .pergunta {
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        button {
+            background: #fc87b4;
+            border-radius: 10px;
+            width: 200px;
+            margin: 20px;
+            height: 60px;
+            border: none;
+            font-family: 'FonteMeninas', Arial, sans-serif;
+            font-size: 30px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="caixa">
+        <div id="logo">
+            <img src="img/meninaszlogo.png" style="height: 150px; width: 200px;">
+        </div>
+
+        <h1>Quiz meninas superpoderosas</h1>
+
+        <div id="area-perguntas">
+            
+            <div class="pergunta">
+                <h3>1. Um monstro ataca a cidade. O que você faz?</h3>
+                <input type="radio" name="p1" id="p1_a">Comando um plano de ataque<br>
+                <input type="radio" name="p1" id="p1_b">Dou um soco nele<br>
+                <input type="radio" name="p1" id="p1_c"> Fico preocupada<br>
+                <input type="radio" name="p1" id="p1_d"> Estudo de onde o monstro veio<br>
+            </div>
+
+            <div class="pergunta">
+                <h3>2. No fim de semana você prefere:</h3>
+                <input type="radio" name="p2" id="p2_a"> Ler um livro e estudar<br>
+                <input type="radio" name="p2" id="p2_b"> Praticar esportes<br>
+                <input type="radio" name="p2" id="p2_c"> Cuidar dos meus bichinhos<br>
+                <input type="radio" name="p2" id="p2_d"> Organizar a semana<br>
+            </div>
+
+            <div class="pergunta">
+                <h3>3. Como você lida com uma discussão?</h3>
+                <input type="radio" name="p3" id="p3_a"> Tento entender os sentimentos da pessoa<br>
+                <input type="radio" name="p3" id="p3_b"> Grito mais alto que ela #surtada<br>
+                <input type="radio" name="p3" id="p3_c"> Uso argumentos lógicos<br>
+                <input type="radio" name="p3" id="p3_d"> Evito a briga e tento fazer as pazes<br>
+            </div>
+
+            <button onclick="calcularResultado()">Ver resultado</button>
+        </div>
+
+        <div id="area-resultado"">
+            </div>
+
+    </div>
+
+    <script>
+        function calcularResultado() {
+            let inteligencia = 0;
+            let coragem = 0;
+            let sensibilidade = 0;
+            let temperamento = 0;
+
+            // P1
+            if (document.getElementById('p1_a').checked) {
+                inteligencia = inteligencia + 4;
+                temperamento = temperamento - 1;
+            } else if (document.getElementById('p1_b').checked) {
+                coragem = coragem + 4;
+                temperamento = temperamento + 3;
+            } else if (document.getElementById('p1_c').checked) {
+                sensibilidade = sensibilidade + 4;
+                temperamento = temperamento - 2;
+            } else if (document.getElementById('p1_d').checked) {
+                inteligencia = inteligencia + 3;
+                sensibilidade = sensibilidade + 1;
+            }
+
+            // P2
+            if (document.getElementById('p2_a').checked) {
+                inteligencia = inteligencia + 3;
+            } else if (document.getElementById('p2_b').checked) {
+                coragem = coragem + 3;
+                temperamento = temperamento + 2;
+            } else if (document.getElementById('p2_c').checked) {
+                sensibilidade = sensibilidade + 4;
+            } else if (document.getElementById('p2_d').checked) {
+                inteligencia = inteligencia + 2;
+                coragem = coragem + 1;
+            }
+
+            // P3
+            if (document.getElementById('p3_a').checked) {
+                sensibilidade = sensibilidade + 3;
+            } else if (document.getElementById('p3_b').checked) {
+                temperamento = temperamento + 4;
+                coragem = coragem + 1;
+            } else if (document.getElementById('p3_c').checked) {
+                inteligencia = inteligencia + 4;
+            } else if (document.getElementById('p3_d').checked) {
+                sensibilidade = sensibilidade + 2;
+                temperamento = temperamento - 2;
+            }
+
+            // Verifica personagem
+            let resultado = "";
+
+            if (inteligencia >= 8 && coragem >= 7 && temperamento <= 6) {
+                resultado = "Florzinha";
+            } else if (sensibilidade >= 8 && temperamento <= 5) {
+                resultado = "Lindinha";
+            } else if (coragem >= 8 && temperamento >= 7) {
+                resultado = "Docinho";
+            } else if (inteligencia > sensibilidade && inteligencia > coragem) {
+                resultado = "Florzinha";
+            } else if (sensibilidade > inteligencia && sensibilidade > coragem) {
+                resultado = "Lindinha";
+            } else {
+                resultado = "Docinho";
+            }
+
+            // Mostrar resultado
+            
+            let divResultado = document.getElementById('area-resultado');
+
+            if (resultado == "Florzinha") {
+                document.body.style.backgroundColor = "pink";
+                document.body.style.backgroundImage = "none"; //tira fundo listrado
+                
+                divResultado.innerHTML = `
+                    <img src="img/florzinha.gif" width="200">
+                    <br>
+                    <h1 style="color: red;">❤️ Florzinha</h1>
+                `;
+            } 
+            else if (resultado == "Lindinha") {
+                document.body.style.backgroundColor = "lightblue";
+                document.body.style.backgroundImage = "none";
+                
+
+                divResultado.innerHTML = `
+                    <h1 style="color: blue;">💙 Lindinha</h1>
+                    <br>
+                    <img src="img/lindinha.gif" width="200">
+                `;
+            } 
+            else if (resultado == "Docinho") {
+                document.body.style.backgroundColor = "lightgreen";
+                document.body.style.backgroundImage = "none";
+                
+                divResultado.innerHTML = `
+                    <img src="img/docinho.gif" width="200" style="vertical-align: middle;">
+                    <h1 style="color: darkgreen; display: inline-block; margin-left: 20px;">💚 Docinho</h1>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

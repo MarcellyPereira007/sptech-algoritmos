@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detector de mensagens suspeitas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background-color: black;">
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="img/detetive-logo.png"
+                    alt="">
+                <h1>Detector de<br>mensagens suspeitas</h1>
+            </div>
+        </header>
+
+        <div class="corpo-site">
+            <div class="entradas">
+                <label>Digite a sua mensagem:</label> <br>
+                <input type="text" id="ipt_mensagem"> <br>
+                <button id="btn_analisar" onclick="analisar()">Analisar mensagem</button>
+            </div>
+
+            <div class="div_mensagem" id="div_mensagem" style="display: none;">
+                <div class="analise"> <!--Tudo dentro de analise fica em coluna-->
+                    <div class="respostas"> <!--Td em resposta fica em linha mas com espaço-->
+                        <div class="pergunta">Tamanho da mensagem:</div> 
+                        <div class="resultado" id="tamanho_mensagem"></div>
+                    </div>
+
+                    <div class="respostas"> 
+                        <div class="pergunta">Começa com a palavra eu?</div> 
+                        <div class="resultado" id="comeca_eu"></div>
+                    </div>
+
+                    <div class="respostas">
+                        <div class="pergunta">Termina com ".com"?</div> 
+                        <div class="resultado" id="termina_com"></div>
+                    </div>
+
+                    <div class="respostas"> 
+                        <div class="pergunta">Termina com ".br"?</div> 
+                        <div class="resultado" id="termina_br"></div>
+                    </div>
+
+                    <div class="respostas">
+                        <div class="pergunta">Quarto caractere da mensagem:</div> 
+                        <div class="resultado" id="quarto_caractere"></div>
+                    </div>
+
+                    <div class="respostas"> 
+                        <div class="pergunta">Primeira letra da mensagem:</div> 
+                        <div class="resultado" id="primeira_letra"></div>
+                    </div>
+
+                    <div class="respostas">
+                        <div class="pergunta">Última letra da mensagem:</div> 
+                        <div class="resultado" id="ultima_letra"></div>
+                    </div>
+
+                    <div class="respostas">
+                        <div class="pergunta">Bob aparece na mensagem?</div> 
+                        <div class="resultado" id="tem_bob"></div>
+                    </div>
+
+                    <div class="respostas"> 
+                        <div class="pergunta">Índice da palavra Bob:</div> 
+                        <div class="resultado" id="onde_bob"></div>
+                    </div>
+
+                    <div class="respostas"> 
+                        <div class="pergunta">Mensagem completa em MAIÚSCULO:</div> 
+                        <div class="resultado" id="mensagem_caps"></div>
+                    </div>
+
+                    <div class="respostas">
+                        <div class="pergunta">Mensagem completa em minúsculo:</div> 
+                        <div class="resultado" id="mensagem_min"></div>
+                    </div>
+
+                    <div class="respostas">
+                        <div class="pergunta">Mensagem sem espaços no início e fim:</div> 
+                        <div class="resultado" id="mensagem_formatada"></div>
+                    </div>
+
+                </div>
+
+                <div class="classificacao" id="div_classificacao"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    
+    //Mostrar o tamanho da mensagem
+    function tamanhoMensagem(textoDigitado){
+        return textoDigitado.length;
+    }
+
+    //Informar se a mensagem começa com a palavra "Eu"
+    function comecaEu(textoDigitado) {
+        return textoDigitado.toUpperCase().startsWith('EU ');
+    }
+
+    //Informar se a mensagem termina com ".com"
+    function terminaCom(textoDigitado) {
+        return textoDigitado.toUpperCase().endsWith('.COM');
+    }
+
+    //Informar se a mensagem termina com ".br"
+    function terminaBr(textoDigitado) {
+        return textoDigitado.toUpperCase().endsWith('.BR');
+    }
+
+    //Mostrar a quarta letra da mensagem (posição 3)
+    function quartaLetra(textoDigitado){
+        return textoDigitado[3];
+    }
+
+    //Mostrar a primeira letra da mensagem
+    function primeiraLetra(textoDigitado) {
+        return textoDigitado[0];
+    }
+
+    //Mostrar a última letra da mensagem
+    function ultimaLetra(textoDigitado) {
+        return textoDigitado[textoDigitado.length - 1];
+    }
+
+    //Mostrar a mensagem sem espaços no início e no fim
+    function semEspacosRedor (textoDigitado) { 
+        let inicioDoCorte = 0;
+        let fimDoCorte = textoDigitado.length;
+
+        // se começar com espaço
+        if (textoDigitado[0] == " "){
+            inicioDoCorte = 1;
+        }
+
+        if (textoDigitado[textoDigitado.length - 1] == " "){
+            fimDoCorte = textoDigitado.length - 1;
+        }
+
+        return textoDigitado.substring(inicioDoCorte, fimDoCorte);
+    }
+
+    /////////////////Add espaços no começo e no fim pra procurar a palavra bob/////////////////////
+    function addEspacosRedor(textoDigitado) {
+
+        // Primeiro tira todos os espaços das pontas e deixa tudo maiúsculo
+        let textoSemEspaco =  semEspacosRedor(textoDigitado).toUpperCase();
+
+        // Adiciona espaço no começo e no fim pra padronizar na hora de pesquisar
+        let textoComEspacos = " " + textoSemEspaco + " ";
+
+        return textoComEspacos;
+    }
+
+    //Informar se a palavra "bob" aparece na mensagem
+    function temBob(textoDigitado) {
+        let texto = addEspacosRedor(textoDigitado);
+
+        return texto.includes(' BOB ');
+    }
+
+    //Mostrar o índice onde a palavra "Bob" aparece
+    function ondeBob(textoDigitado) {
+        let texto = addEspacosRedor(textoDigitado);
+
+        return texto.indexOf(' BOB ');
+    }
+
+    //Mostrar a mensagem totalmente em MAIÚSCULO
+    function mensagemMaiuscula(textoDigitado) {
+        return textoDigitado.toUpperCase();
+    }
+
+    //Mostrar a mensagem totalmente em minúsculo
+    function mensagemMinuscula(textoDigitado) {
+        return textoDigitado.toLowerCase();
+    }
+
+    // Verifica se tem grátis
+    function temGratis(textoDigitado) {
+        let texto = addEspacosRedor(textoDigitado);
+
+        return texto.includes(' GRÁTIS ');
+    }
+
+    // Verifica se tem promoção
+    function temPromocao(textoDigitado) {
+        let texto = addEspacosRedor(textoDigitado);
+
+        return texto.includes(' PROMOÇÃO ');
+    }
+
+    ///////////////Função principal///////////////
+
+    function analisar() {
+        // Pega a mensagem bruta
+        let mensagem = ipt_mensagem.value;
+        let mensagembruta = ipt_mensagem.value;
+        let classificacao = "Mensagem comum";
+
+        // Tira os espaços "inúteis"
+        mensagem = semEspacosRedor(mensagem);
+
+        // Pegar todos os resultados
+        let varTamanhoMensagem = tamanhoMensagem(mensagembruta);
+        let varComecaEu = comecaEu(mensagem);
+        let varTerminaCom = terminaCom(mensagem);
+        let varTerminaBr = terminaBr(mensagem);
+        let varQuartaLetra = quartaLetra(mensagembruta);
+        let varPrimeiraLetra = primeiraLetra(mensagembruta);
+        let varUltimaLetra = ultimaLetra(mensagembruta);
+        let varTemBob = temBob(mensagembruta);
+        let varOndeBob = ondeBob(mensagembruta);
+        let varMensagemMaiuscula = mensagemMaiuscula(mensagem);
+        let varMensagemMinuscula = mensagemMinuscula(mensagem);
+
+        let varTemGratis = temGratis(mensagem);
+        let varTemPromocao = temPromocao(mensagem);
+
+        // Fazer as validações
+        //Se o campo estiver vazio (ou somente com espaços), exiba:
+        //Digite uma mensagem válida.
+        if (mensagem == ""){
+            alert("Digite uma mensagem válida");
+        }
+        else {
+            //Se a mensagem tiver menos de 10 caracteres, exiba:
+            //Mensagem muito curta para análise.
+            if (varTamanhoMensagem < 10){
+                alert("Mensagem muito curta para análise");
+            }
+
+            //Se a mensagem contiver a palavra "bob", exiba:
+            //Atenção: usuário Bob mencionado na mensagem.
+            if (varTemBob == true) {
+                alert("Usuário Bob mencionado na mensagem");
+            }
+
+            //Se a mensagem terminar com .com ou .br, exiba:
+            //A mensagem contém um possível link.
+            if (varTerminaCom == true || varTerminaBr == true) {
+                alert("A mensagem contém um possível link.");
+                classificacao = "Mensagem com link";
+            }
+
+            //Se a mensagem possuir a palavra "promoção" ou "grátis", exiba:
+            //Possível mensagem de spam detectada.
+
+            if (varTemGratis == true || varTemPromocao == true) {
+                alert("Possível mensagem de spam detectada.");
+                classificacao = "Mensagem suspeita";
+            }
+
+            //Se a mensagem começar com "Eu", exiba:
+            //A mensagem parece estar escrita em primeira pessoa.
+            if (varComecaEu == true) {
+                alert("A mensagem parece estar escrita em primeira pessoa.");
+            }
+        }
+
+        
+
+        // Exibir e enviar pra div referente
+        // Exibir quantos caracteres tem na mensagem
+        tamanho_mensagem.innerHTML = `A mensagem tem ${varTamanhoMensagem} caracteres com os espaços e ${mensagem.replaceAll(" ", "").length} sem contar os espaços`;
+
+        // Exibir se começa com eu ou não
+        if (varComecaEu == false){
+            comeca_eu.innerHTML = `A mensagem não inicia com "Eu"`;
+        } else {
+            comeca_eu.innerHTML = `A mensagem inicia com "Eu"`;
+        }
+
+        // Exibir se termina com .com
+        if (varTerminaCom == false){
+            termina_com.innerHTML = `A mensagem não termina com ".com"`;
+        } else {
+            termina_com.innerHTML = `A mensagem termina com ".com"`;
+        }
+
+        // Exibir se termina com .br
+        if (varTerminaBr == false){
+            termina_br.innerHTML = `A mensagem não termina com ".br"`;
+        } else {
+            termina_br.innerHTML = `A mensagem termina com ".br"`;
+        }
+
+        // Exibir qual o quarto caractere
+        // Se for vazio ele diz que não dá pra verificar
+        if (varQuartaLetra == undefined) {
+            quarto_caractere.innerHTML = `Texto curto demais para essa verificação`;
+        } else {
+            if (varQuartaLetra == " ") {
+                quarto_caractere.innerHTML = `O quarto caractere é &nbsp;<b>um espaço</b>`;
+            } else {
+                quarto_caractere.innerHTML = `O quarto caractere é &nbsp;<b>${varQuartaLetra}</b>`;
+            }
+        }
+
+        // Exibir o primeiro caractere
+        if (varPrimeiraLetra == undefined) {
+            primeira_letra.innerHTML = `Digite uma mensagem válida`;
+        } else {
+            if (varPrimeiraLetra == " ") {
+                primeira_letra.innerHTML = `O primeiro caractere é &nbsp;<b>um espaço</b>`;
+            }
+            else {
+                primeira_letra.innerHTML = `O primeiro caractere é &nbsp;<b>${varPrimeiraLetra}</b>`;
+            }
+        }
+
+        // Exibir último caractere
+        if (varUltimaLetra == undefined) {
+            ultima_letra.innerHTML = `Digite uma mensagem válida`;
+        } else {
+            if (varUltimaLetra == " ") {
+                ultima_letra.innerHTML = `O último caractere é &nbsp;<b>um espaço</b>`;
+            }
+            else {
+                ultima_letra.innerHTML = `O último caractere é &nbsp;<b>${varUltimaLetra}</b>`;
+            }
+        }
+
+        // Exibir se tem "Bob"
+        if (varTemBob == false){
+            tem_bob.innerHTML = `Bob não foi mencionado nessa mensagem`;
+        } else {
+            tem_bob.innerHTML = `Bob foi mencionado nessa mensagem`;
+        }
+
+        // Onde está bob na mensagem
+        if (varOndeBob < 0 ){
+            onde_bob.innerHTML = `Como não foi mencionado, não é possível localizar`;
+        } else {
+            onde_bob.innerHTML = `Bob foi mencionado no índice &nbsp;<b>${varOndeBob}</b>`;
+        }
+
+        mensagem_caps.innerHTML = varMensagemMaiuscula;
+
+        mensagem_min.innerHTML = varMensagemMinuscula;
+
+        mensagem_formatada.innerHTML = mensagem;
+
+        // Exibir mensagem da classificação
+        div_classificacao.innerHTML = `<h1>Tipo da mensagem</h1>${classificacao}`; 
+
+        // Exibir o resultado
+        document.getElementById("div_mensagem").style.display = "block";
+    }
+</script>
