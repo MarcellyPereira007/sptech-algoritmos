@@ -8,27 +8,62 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
-    <title>Titulo</title>
+    <title>Avaliação do Clima: Está Agradável ou Desconfortável?</title>
 </head>
 
 <body>
     <header>
-        <h1>Titulo</h1>
+        <h1>5. Avaliação do Clima: Está Agradável ou Desconfortável?</h1>
     </header>
 
     <div class="enunciado">
         <p>
-            Aqui o enunciado com brs
+            Crie um programa em que ajude a avaliar o clima de um ambiente, o qual: <br><br>
+
+            a) Solicite a temperatura <br><br>
+
+            b) Solicite a umidade do ar <br><br>
+
+            c) Ao clicar em 'Avaliar clima': <br><br>
+
+                c.1) Caso a umidade for inválida, ou seja, menor que 0 e maior que 100, exiba um alert "Valor de umidade inválido" e limpe qualquer outro texto que exista na tela (item c.2) <br>
+                c.2) Caso a umidade for válida, exiba uma dessas frases na própria página, abaixo do botão: <br><br>
+
+                        "Clima agradável", caso a temperatura for entre 22 e 23 e a umidade for menor que 60. <br>
+                        "Clima desconfortável", em caso contrário.  
         </p>
     </div>
 
     <div class="entradas">
-        <label>Label</label> <br>
-        <input type="number" id="ipt" placeholder="Digite aqui"><br><br>
-        <button onclick="avaliar()">Botão</button>
+        <label>Digite a temperatura:</label> <br>
+        <input type="number" id="ipt_temperatura" placeholder="Digite aqui a temperatura"><br><br>
+
+        <label>Digite umidade do ar:</label> <br>
+        <input type="number" id="ipt_umidade" placeholder="Digite aqui a umidade"><br><br>
+
+        <button onclick="avaliar()">Avaliar clima</button>
     </div>
 
     <div class="div_mensagem" id="div_mensagem"></div>
 </body>
-
 </html>
+
+<script>
+    function avaliar() {
+        var temperatura = Number(ipt_temperatura.value);
+        var umidade = Number(ipt_umidade.value);
+
+        if (!(umidade >= 0 && umidade <= 100)) {
+            alert("Valor de umidade inválido");
+            div_mensagem.innerHTML = ``; 
+        }
+        else if ((temperatura >= 22 && temperatura <= 23) && (umidade < 60)) {
+            div_mensagem.innerHTML = `Clima agradável`; 
+        }
+        else {
+            div_mensagem.innerHTML = `Clima desconfortável`; 
+        }
+
+    }
+
+</script>

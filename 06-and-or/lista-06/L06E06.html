@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Desempenho Escolar: O Aluno Foi Aprovado?</title>
+</head>
+
+<body>
+    <header>
+        <h1>6. Desempenho Escolar: O Aluno Foi Aprovado?</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Crie um programa que avalie o desempenho de um aluno, o qual: <br><br>
+
+            a) Solicite a nota e a frequência do aluno <br><br>
+
+            b) Ao clicar em "Analisar aluno", faça as seguintes ações... <br><br>
+
+            c) Caso a nota não seja válida, ou seja, caso não esteja entre 0 e 10, exiba um alert "Onde já se viu nota
+            <0 ou>10?!" e limpe qualquer outro resultado que já estiver aparecendo na tela <br><br>
+
+                d) Caso a frequência não seja válida, ou seja, caso não esteja entre 0 e 100, exiba um alert "Onde já se
+                viu frequência <0 ou>100?!" e limpe qualquer outro resultado que já estiver aparecendo na tela <br><br>
+
+                    e) Caso a nota estiver entre 0 e menor que 6, exiba na tela essa frase: "Aluno ficou abaixo da
+                    média" <br><br>
+
+                    f) Caso a nota estiver entre 6 e 8, exiba na tela essa frase: "Aluno ficou na média" <br><br>
+
+                    g) Caso a nota estiver entre mais que 8 e 10, exiba na tela essa frase: "Aluno acima da média"
+                    <br><br>
+
+                    h) Caso o aluno tiver frequência a partir de 75, exiba na tela "Aluno aprovado por frequência" ou
+                    "Aluno reprovado por frequência", em caso contrário
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Digite a nota do aluno:</label> <br>
+        <input type="number" id="ipt_nota" placeholder="Digite aqui a nota"><br><br>
+
+        <label>Digite a frequência do aluno:</label> <br>
+        <input type="number" id="ipt_frequencia" placeholder="Digite aqui a frequência"><br><br>
+
+        <button onclick="avaliar()">Analisar aluno</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    function avaliar() {
+        var nota = Number(ipt_nota.value);
+        var frequencia = Number(ipt_frequencia.value);
+        var statusMedia = "";
+        var statusFrequencia = "";
+
+        // Como desafio pessoal vou classificar se a nota dele reprova ele mesmo com a frequência alta.
+        // No final irei ver se foi aprovado tanto na frequência como em nota pro resultado final
+        var aprovacoes = 0; // se tiver 2 no resultado foi aprovado nos dois, se for 1 ele reprovou por algum motivo, se for 0 reprovou nos dois
+        var motivo = "";
+
+        // Se não for numero
+        if (isNaN(nota) || isNaN(frequencia)) {
+            alert("Insira dígitos numéricos nos campos");
+            div_mensagem.innerHTML = "";
+        } 
+        // Se for número, verifica se o intervalo ta certo
+        else if (nota < 0 || nota > 10) {
+            alert("Onde já se viu nota <0 ou >10?!");
+            div_mensagem.innerHTML = "";
+        }
+        else if (frequencia < 0 || frequencia > 100) {
+            alert("Onde já se viu frequência <0 ou >100?!");
+            div_mensagem.innerHTML = "";
+            // Se for um dígito válido e dentro do 0 - 10 pra nota ou 0 - 100 pra freq, classifica
+        } else {
+            // Verifica onde se encontra na média
+            if (nota < 6) { // 0 ao 5
+                statusMedia = "Aluno ficou abaixo da média";
+                motivo = "por nota insuficiente :(";
+            } else if (nota <= 8) { // 6 ao 8
+                statusMedia = "Aluno ficou na média";
+                aprovacoes++;
+            } else { // 9 ao 10
+                statusMedia = "Aluno acima da média";
+                aprovacoes++;
+            }
+
+            //Atualiza o status da frequência dele
+            if (frequencia < 75) {
+                statusFrequencia = "Aluno reprovado por frequência";
+                motivo = "por frequência insuficiente :(";
+            } else {
+                statusFrequencia = "Aluno aprovado por frequência";
+                aprovacoes++;
+            }
+
+
+            //Exibe padrao
+            div_mensagem.innerHTML = `${statusMedia}<br>${statusFrequencia}`;
+
+            // Resultado final
+            // Se foi reprovado nos dois requisitos
+            if (aprovacoes == 0) {
+                div_mensagem.innerHTML += `<br>O aluno foi reprovado em todos requisitos :(`;
+            }
+            // Se foi aprovado nos dois requisitos
+            else if (aprovacoes == 2) {
+                div_mensagem.innerHTML += `<br>O aluno foi aprovado em todos requisitos :)`;
+            }
+            // Se foi aprovado em pelo menos um, diz o motivo que reprovou
+            else {
+                div_mensagem.innerHTML += `<br>O aluno foi reprovado ${motivo}`;
+            }
+        }
+    }
+
+</script>

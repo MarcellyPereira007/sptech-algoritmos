@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Autenticação Segura com Tentativas Limitadas</title>
+</head>
+
+<body>
+    <header>
+        <h1>7. Autenticação Segura com Tentativas Limitadas</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Melhore o exercício 4, de tal forma que: <br><br>
+
+            a) Sempre que ocorrer uma falha na autenticação, deve aparecer abaixo da frase de "Falha de autenticação"
+            uma outra frase, como esta: <br>
+            Você ainda tem 2 tentativa(s) <br><br>
+
+            b) A ideia é que o usuário tem 3 tentativas de autenticação. Sempre que errar novamente na autenticação, o
+            "contador" de tentativas reduz em 1 na tela. <br><br>
+
+            c) Uma vez que se esgotarem as tentativas, deve surgir mais uma frase abaixo, que seria <br><br>
+
+            Usuário BLOQUEADO! Procure seu gerente! <br><br>
+
+            d) Em caso de usuário bloqueado, não adianta nem tentar fazer uma autenticação com as credenciais corretas,
+            que nada mais acontecerá <br><br>
+
+            e) Caso o usuário autentique com sucesso, sem que tenham sido queimadas as 3 tentativas, a mensagem de
+            autenticação aparece normalmente e a frase com a quantidade de tentativas deve sumir da tela e deve ser
+            "reiniciada" para as próximas falhas.
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Digite o seu login</label> <br>
+        <input type="text" id="ipt_login" placeholder="Digite o login aqui"><br><br>
+
+        <label>Digite sua senha</label> <br>
+        <input type="password" id="ipt_senha" placeholder="Digite a senha aqui"><br><br>
+
+        <label>Selecione o tipo de verificação</label> <br>
+        <select onchange="selecionar()" name="tipo_verificacao" id="tipo_verificacao">
+            <option value="escolha">Escolha uma opção</option>
+            <option value="ano">Ano de nascimento</option>
+            <option value="pet">Nome do pet</option>
+        </select> <br>
+
+        <div id="div_verificacao"></div>
+
+        <button onclick="avaliar()">Autenticar</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    // NOVO: variável tentativas
+    var tentativas = 3;
+
+    function selecionar() {
+        var verificacao = tipo_verificacao.value;
+
+        div_verificacao.innerHTML = "";
+
+        if (verificacao == "ano") {
+            div_verificacao.innerHTML = `<label>Digite o ano do seu nascimento</label> <br>
+        <input type="text" id="ipt_ano" placeholder="Digite o ano aqui"><br><br>`;
+        } else if (verificacao == "pet") {
+            div_verificacao.innerHTML = `<label>Digite o nome do seu pet</label> <br>
+        <input type="text" id="ipt_pet" placeholder="Digite o nome aqui"><br><br>`;
+        }
+    }
+
+    function avaliar() {
+        var login = document.getElementById("ipt_login").value;
+        var senha = document.getElementById("ipt_senha").value;
+        var verificacao = document.getElementById("tipo_verificacao").value;
+
+        // Tem algo no nesse id? Se tiver, pegue o valor. se não tiver, deixa vazio
+        var ano = document.getElementById("ipt_ano") ? document.getElementById("ipt_ano").value : "";
+        var pet = document.getElementById("ipt_pet") ? document.getElementById("ipt_pet").value.toLowerCase() : "";
+
+
+        if (tentativas > 0) {
+            if (login.toLowerCase() == "ana" && senha.toLowerCase() == "braga" && (ano == "1949" || pet == "louro josé")) {
+                div_mensagem.innerHTML = `<p>Usuário autenticado</p>`;
+                tentativas = 3;
+            } else if (verificacao !== "pet" && verificacao !== "ano") {
+                alert("Selecione um tipo de verificação");
+            } else {
+                div_mensagem.innerHTML = `<p>Falha na autenticação</p>`;
+                tentativas --;
+                if (tentativas > 0) {
+                    div_mensagem.innerHTML += `<p><br>Você ainda tem ${tentativas} tentativas<br></p>`;
+                }
+                else {
+                    div_mensagem.innerHTML = `<p>Falha na autenticação<br>Usuário BLOQUEADO! Procure seu gerente!</p>`;
+                }
+            }
+        } else {
+            div_mensagem.innerHTML = `<p>Falha na autenticação<br>Usuário BLOQUEADO! Procure seu gerente!</p>`;
+        }
+    }
+</script>
