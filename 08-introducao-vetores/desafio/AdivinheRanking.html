@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Adivinhe o Ranking da Competição</title>
+</head>
+
+<body>
+
+    <!--Usuário posiciona nos campos-->
+    <label>Posição 1</label>
+    <select id="select_p1">
+        <option value="escolha">Escolha uma opção</option>
+        <option value="wolf">Wolf</option>
+        <option value="unicorn">Unicorn</option>
+        <option value="eagle">Eagle</option>
+        <option value="tyrano">Tyrano</option>
+        <option value="leon">Leon</option>
+    </select><br><br>
+
+    <label>Posição 2</label>
+    <select id="select_p2">
+        <option value="escolha">Escolha uma opção</option>
+        <option value="wolf">Wolf</option>
+        <option value="unicorn">Unicorn</option>
+        <option value="eagle">Eagle</option>
+        <option value="tyrano">Tyrano</option>
+        <option value="leon">Leon</option>
+    </select><br><br>
+
+    <label>Posição 3</label>
+    <select id="select_p3">
+        <option value="escolha">Escolha uma opção</option>
+        <option value="wolf">Wolf</option>
+        <option value="unicorn">Unicorn</option>
+        <option value="eagle">Eagle</option>
+        <option value="tyrano">Tyrano</option>
+        <option value="leon">Leon</option>
+    </select><br><br>
+
+    <label>Posição 4</label>
+    <select id="select_p4">
+        <option value="escolha">Escolha uma opção</option>
+        <option value="wolf">Wolf</option>
+        <option value="unicorn">Unicorn</option>
+        <option value="eagle">Eagle</option>
+        <option value="tyrano">Tyrano</option>
+        <option value="leon">Leon</option>
+    </select><br><br>
+
+    <label>Posição 5</label>
+    <select id="select_p5">
+        <option value="escolha">Escolha uma opção</option>
+        <option value="wolf">Wolf</option>
+        <option value="unicorn">Unicorn</option>
+        <option value="eagle">Eagle</option>
+        <option value="tyrano">Tyrano</option>
+        <option value="leon">Leon</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="selecionar()">Verificar</button>
+
+    <br><br>
+
+    <div id="resultado"></div>
+
+</body>
+
+</html>
+<script>
+    var contador = 0;
+    var ranking = ["leon", "unicorn", "tyrano", "wolf", "eagle"];
+    var rankingUser = [];
+    var nomesCertos = [];
+    var qtdAcertos = 0;
+    var nomesErrados = [];
+    var qtdErros = 0;
+
+    function selecionar() {
+        // Insere a opçõa selecionada no vetor do chute
+        let posicao1 = select_p1.value;
+        rankingUser.push(posicao1);
+        let posicao2 = select_p2.value;
+        rankingUser.push(posicao2);
+        let posicao3 = select_p3.value;
+        rankingUser.push(posicao3);
+        let posicao4 = select_p4.value;
+        rankingUser.push(posicao4);
+        let posicao5 = select_p5.value;
+        rankingUser.push(posicao5);
+
+        // Guardando nomes certos ou errados
+        (ranking[0] == rankingUser[0]) ? nomesCertos.push(posicao1) : nomesErrados.push(posicao1);
+        (ranking[1] == rankingUser[1]) ? nomesCertos.push(posicao2) : nomesErrados.push(posicao2);
+        (ranking[2] == rankingUser[2]) ? nomesCertos.push(posicao3) : nomesErrados.push(posicao3);
+        (ranking[3] == rankingUser[3]) ? nomesCertos.push(posicao4) : nomesErrados.push(posicao4);
+        (ranking[4] == rankingUser[4]) ? nomesCertos.push(posicao5) : nomesErrados.push(posicao5);
+
+        // Guardando qtd de acertos e erros
+        (ranking[0] == rankingUser[0]) ? qtdAcertos++ : qtdErros++;
+        (ranking[1] == rankingUser[1]) ? qtdAcertos++ : qtdErros++;
+        (ranking[2] == rankingUser[2]) ? qtdAcertos++ : qtdErros++;
+        (ranking[3] == rankingUser[3]) ? qtdAcertos++ : qtdErros++;
+        (ranking[4] == rankingUser[4]) ? qtdAcertos++ : qtdErros++;
+
+        resultado.innerHTML = `
+        Você teve ${qtdAcertos} acertos<br>
+        Você teve ${qtdErros} erros<br>
+        Você acertou os nomes: ${nomesCertos}<br>
+        Você errou os nomes: ${nomesErrados}<br>
+        `;
+
+        if (qtdAcertos >= 3) {
+            resultado.innerHTML += `Você conhece bem essa competição!`;
+        } else {
+            resultado.innerHTML += `Você precisa acompanhar mais essa competição!`;
+        }
+
+    }
+
+</script>

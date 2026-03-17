@@ -1,4 +1,4 @@
-# Exercício: Detector de Mensagens Suspeitas
+# Desafio: Detector de Mensagens Suspeitas
 
 Uma empresa está desenvolvendo um sistema simples para analisar mensagens recebidas em um chat e identificar possíveis sinais de spam ou comportamento suspeito.
 

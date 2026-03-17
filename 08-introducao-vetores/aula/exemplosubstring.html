@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="ipt_sala">
+    <button onclick="exibir()">Exibir resumo</button>
+
+    <div id="resultado"></div>
+</body>
+</html>
+
+<script>
+    function exibir (){
+        let sala = ipt_sala.value;
+
+        let contemCco = sala.includes("CCO");
+        let indiceCco = sala.indexOf("CCO");
+
+
+        //1ADSA 20252
+
+        let curso = sala.substring(1,4);
+        let turma = sala.substring(4,5);
+        let ano = sala.substring(6,10);
+        let semestre = sala.substring(0,1);
+
+
+        resultado.innerHTML = `
+        Contém CCO: ${contemCco}<br>
+        Índice CCO: ${indiceCco}<br>
+        Você é do curso de ${curso}, da turma ${turma}, e iniciou no ano de ${ano}, seu semestre é ${semestre}
+        `
+    }
+</script>
