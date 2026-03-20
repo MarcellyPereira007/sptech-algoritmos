@@ -145,7 +145,7 @@
 
         // Mostra o campeão com letras maiúscula
         let campeao = ranking[0].toUpperCase();
-        div_campeao.innerHTML = `🥇 O GRANDE CAMPEÃO É: ${campeao} 🥇`;
+        div_campeao.innerHTML = `O CAMPEÃO É: ${campeao} 🥇`;
     }
 
     function adicionarCampeao() {
@@ -167,18 +167,18 @@
         let estaNoRanking;
 
         // se tiver na lista ele guarda true
-        meusCampeoes.indexOf(nomeBusca) >= 0 ? estaNaListaUser = true : estaNaListaUser = false;
-        ranking.indexOf(nomeBusca) >= 0 ? estaNoRanking = true : estaNoRanking = false;
+        meusCampeoes.toString().toUpperCase().indexOf(nomeBusca.toUpperCase()) >= 0 ? estaNaListaUser = true : estaNaListaUser = false;
+        ranking.toString().toUpperCase().indexOf(nomeBusca.toUpperCase()) >= 0 ? estaNoRanking = true : estaNoRanking = false;
 
         // Se os dois forem verdadeiros
         if (estaNaListaUser && estaNoRanking) {
-            div_resultado_busca.innerHTML = `O nome <b>${nomeBusca}</b> está nas duas listas`;
+            div_resultado_busca.innerHTML = `O nome <b>${nomeBusca.toUpperCase()}</b> está nas duas listas`;
         } else if (estaNaListaUser) {
-            div_resultado_busca.innerHTML = `O nome <b>${nomeBusca}</b> está só na sua lista de campeões`;
+            div_resultado_busca.innerHTML = `O nome <b>${nomeBusca.toUpperCase()}</b> está só na sua lista de campeões`;
         } else if (estaNoRanking) {
-            div_resultado_busca.innerHTML = `O nome <b>${nomeBusca}</b> está só no ranking do sistema`;
+            div_resultado_busca.innerHTML = `O nome <b>${nomeBusca.toUpperCase()}</b> está só no ranking do sistema`;
         } else {
-            div_resultado_busca.innerHTML = `O nome <b>${nomeBusca}</b> não está em nenhuma das listas :(`;
+            div_resultado_busca.innerHTML = `O nome <b>${nomeBusca.toUpperCase()}</b> não está em nenhuma das listas :(`;
         }
     }
 </script>
