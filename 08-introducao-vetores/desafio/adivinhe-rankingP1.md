@@ -1,4 +1,4 @@
-# Desafio: Adivinhe o Ranking da Competição
+# Desafio: Adivinhe o Ranking da Competição (Parte 1)
 
 Nesta atividade você iremos trabalhar com vetores (arrays), condicionais e manipulação de elementos HTML.
 
@@ -32,5 +32,3 @@ Crie um botão chamado "Exibir resultado". Ao clicar nele, seu programa deve:
 Após isso, exiba também uma mensagem final:
 Se o usuário acertar mais da metade do ranking, exiba: "Você conhece bem essa competição!"
 Se acertar menos da metade, exiba: "Você precisa acompanhar mais essa competição!"
-
-
