@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Acompanhando Grana (Parte 3)</title>
+</head>
+
+<body>
+    <header>
+        <h1>7. Refaça o anterior de tal forma que :</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Somente nos meses que ganhou o "bônus", apareça uma imagem de uma estrela bem pequena (reduza a imagem para ficar quase do tamanho da fonte) à direita do valor acumulado. <br><br>
+        </p>
+    </div>
+
+
+    <div class="entradas">
+        <label>Digite quantos depósitos você fez no banco:</label> <br>
+        <input type="number" id="ipt_qtdDepositos" placeholder="Digite o número aqui"><br><br>
+
+        <label>Digite o valor do depósito:</label> <br>
+        <input type="number" id="ipt_valorDeposito" placeholder="Digite o valor aqui"><br><br>
+
+        <button onclick="verificar()">Acompanhar grana</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    function verificar() {
+
+        var qtdDepositos = Number(ipt_qtdDepositos.value);
+        var valorDeposito = Number(ipt_valorDeposito.value);
+        var total = 0;
+        var contadorDep = 0;
+        div_mensagem.innerHTML = ``;
+
+        for (let i = 0; i < qtdDepositos; i++) {
+            //total += valor deposito
+            total += valorDeposito;
+            //Incrementa a qtd de dep
+            contadorDep ++;
+
+            if (contadorDep == 3) {
+                contadorDep = 0;
+                total += total * 0.01
+                // Mostrar i +1  mês: R$ total
+                div_mensagem.innerHTML += `<br>${i + 1}º Mês: R$ ${total.toFixed(2)} <img src="https://static.vecteezy.com/system/resources/previews/018/722/931/non_2x/star-shape-symbol-on-transparent-background-free-png.png" alt="Aumento" style="height: 10px; width: 10px;">`;
+            } else {
+                // Mostrar i +1  mês: R$ total
+                div_mensagem.innerHTML += `<br>${i + 1}º Mês: R$ ${total.toFixed(2)}`;
+            }
+        }
+
+        div_mensagem.innerHTML += `<br>Total guardado: R$${total.toFixed(2)}`;
+
+    }
+</script>

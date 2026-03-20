@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Quantidade de Café c leite</title>
+</head>
+
+<body>
+    <header>
+        <h1>4. Quantidade de Café com leite:</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Crie um programa no qual: <br>
+            a) O usuário informa quantas xícaras de café com leite ele já tomou na vida <br><br>
+
+            b) Ao clicar em "Ver a quantidade", devem aparecer na tela X colheres com leite em pó e Y colheres de café
+            em pó. Para cada xícara de café com leite informada em a) considere que o usuário usa 1 colher de leite e 2
+            de café. Assim você saberá os valores de X e Y. <br>
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Digite quantas xícaras de café com leite você já bebeu na vida:</label> <br>
+        <input type="number" id="ipt_qtdCafe" placeholder="Digite o número aqui"><br><br>
+
+        <button onclick="verificar()">Ver a quantidade</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    function verificar() {
+        let quantidadeCafe = Number(ipt_qtdCafe.value);
+        div_mensagem.innerHTML = `Quantidade de colheres de leite: `;
+
+        for (let i = 0; i < quantidadeCafe; i++) {
+            div_mensagem.innerHTML += `🥛`;
+        }
+
+        div_mensagem.innerHTML += `<br>Quantidade de colheres de café: `;
+
+        for (let i = 0; i < (quantidadeCafe*2); i++) {
+            div_mensagem.innerHTML += `☕`;
+        }
+    }
+</script>

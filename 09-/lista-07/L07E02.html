@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Simulador de entrada de caronas (Parte 2)</title>
+</head>
+
+<body>
+    <header>
+        <h1>2. Incremente a questão anterior de tal forma que: </h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            a) Também tenha um campo no qual o usuário indique a capacidade de passageiros que o veículo suporta <br><br>
+
+            b) Ao clicar no botão, as frases só começam a mostrar que o passageiro terá que esperar quando a capacidade
+            indicada em a) for excedida.
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Digite quantas pessoas vão entrar no carro:</label> <br>
+        <input type="number" id="ipt_qtdPessoas" placeholder="Digite o número aqui"><br><br>
+
+        <label>Digite quantas pessoas o carro suporta:</label> <br>
+        <input type="number" id="ipt_qtdLotacaoMax" placeholder="Digite o número aqui"><br><br>
+        <button onclick="caronas()">#Partiu Carona</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+
+    function caronas() {
+        var qtdPessoas = Number(ipt_qtdPessoas.value);
+        var qtdLotacaoMax = Number(ipt_qtdLotacaoMax.value);
+
+        for (let i = 0; i < qtdPessoas; i++) {
+            if (i == 0) {
+                // Mostrar mensagem do motorista
+                div_mensagem.innerHTML = `Entrou o ${i + 1}º passageiro (que é o(a) motorista)`;
+            }
+            else if (i >= qtdLotacaoMax) {
+                // Mostrar mensagem de espera
+                div_mensagem.innerHTML += `<br>O ${i + 1}º passageiro terá que esperar!`;
+            }
+            else {
+                // Mostrar mensagem padrão
+                div_mensagem.innerHTML += `<br>Entrou o ${i + 1}º passageiro`;
+            }
+        }
+    }
+
+</script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Quantidade de Coca-Cola</title>
+</head>
+
+<body>
+    <header>
+        <h1>3. Quantidade de Coca-Cola</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Crie um programa no qual: <br>
+            a) O usuário informe quantas "Coca-Cola" ele acha que já bebeu na vida<br><br>
+
+            b) Ao clicar em "Ver a quantidade", devem aparecer na tela N garrafinhas (ou latas, se preferir) de
+            "Coca-Cola" uma ao lado da outra, conforme a quantidade informada em a)<br><br>
+
+            c) Para saber se seu programa está correto, teste algo assim: informe 20 e clique. Depois informe só 3 e
+            clique novamente. Veja se vão aparecer só 3 garrafinhas (ou latas) na tela.<br><br>
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Digite quantas Coca-Cola você já bebeu na vida:</label> <br>
+        <input type="number" id="ipt_qtdCoca" placeholder="Digite o número aqui"><br><br>
+
+        <button onclick="verificar()">Ver a quantidade</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    function verificar () {
+        let quantidadeCoca = Number(ipt_qtdCoca.value);
+        div_mensagem.innerHTML = "";
+
+        for (let i = 0; i < quantidadeCoca; i++) {
+            div_mensagem.innerHTML += `🥤 `;
+        }
+    }
+
+
+</script>

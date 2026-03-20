@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Simulador de entrada de caronas</title>
+</head>
+
+<body>
+    <header>
+        <h1>1. Crie um programa que simule a entrada de caronas num carro:</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            a) Pergunte ao usuário quantas pessoas, vão entrar no carro <br><br>
+
+            b) Ao clicar num botão "#Partiu Carona"... <br><br>
+
+            c) Exiba, debaixo do botão, frases como estas: <br><br>
+
+            Entrou o 1º passageiro (que é o(a) motorista) <br><br>
+
+            Entrou o 2º passageiro <br><br>
+
+            Entrou o 3º passageiro<br><br>
+
+            Entrou o 4º passageiro<br><br>
+
+            Entrou o 5º passageiro<br><br>
+
+            O 6º passageiro terá que esperar!<br><br>
+
+            O 7º passageiro terá que esperar!<br><br>
+
+            d) Note que, sempre na frase do 1º passageiro, deve constar ao lado que é motorista <br><br>
+
+            e) A partir do 6º passageiro, a frase muda, pois o carro só comporta 5 passageiros
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Digite quantas pessoas vão entrar no carro:</label> <br>
+        <input type="number" id="ipt_qtdPessoas" placeholder="Digite o número aqui"><br><br>
+        <button onclick="caronas()">#Partiu Carona</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+
+    function caronas() {
+        var qtdPessoas = Number(ipt_qtdPessoas.value);
+
+        for (let i = 0; i < qtdPessoas; i++) {
+            if (i == 0) {
+                // Mostrar mensagem do motorista
+                div_mensagem.innerHTML = `Entrou o ${i+1}º passageiro (que é o(a) motorista)`;
+            }
+            else if (i >= 5){
+                // Mostrar mensagem de espera
+                div_mensagem.innerHTML += `<br>O ${i+1}º passageiro terá que esperar!`;
+            }
+            else {
+                // Mostrar mensagem padrão
+                div_mensagem.innerHTML += `<br>Entrou o ${i+1}º passageiro`;
+            }
+        }
+    }
+
+</script>

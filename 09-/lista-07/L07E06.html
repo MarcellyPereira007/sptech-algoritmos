@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Acompanhando Grana (Parte 2)</title>
+</head>
+
+<body>
+    <header>
+        <h1>6. Refaça o anterior de tal forma que :</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            A cada 3 depósitos o banco dê um bônus de 1% sobre o valor acumulado após o depósito. Ex: <br><br>
+
+            1º Mês: R$ 500.00<br><br>
+
+            2º Mês: R$ 1000.00<br><br>
+
+            3º Mês: R$ 1515.00<br><br>
+
+            4º Mês: R$ 2015.00<br><br>
+
+            5º Mês: R$ 2515.00<br><br>
+
+            6º Mês: R$ 3045.15<br><br>
+
+            Total guardado: R$3045.15<br><br>
+
+            Note que nos meses 3 e 6, o valor aumentou em 1% do total após o depósito.
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Digite quantos depósitos você fez no banco:</label> <br>
+        <input type="number" id="ipt_qtdDepositos" placeholder="Digite o número aqui"><br><br>
+
+        <label>Digite o valor do depósito:</label> <br>
+        <input type="number" id="ipt_valorDeposito" placeholder="Digite o valor aqui"><br><br>
+
+        <button onclick="verificar()">Acompanhar grana</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    function verificar() {
+
+        var qtdDepositos = Number(ipt_qtdDepositos.value);
+        var valorDeposito = Number(ipt_valorDeposito.value);
+        var total = 0;
+        var contadorDep = 0;
+        div_mensagem.innerHTML = ``;
+
+        for (let i = 0; i < qtdDepositos; i++) {
+            //total += valor deposito
+            total += valorDeposito;
+            //Incrementa a qtd de dep
+            contadorDep ++;
+
+            if (contadorDep == 3) {
+                contadorDep = 0;
+                total += total * 0.01
+            }
+
+            // Mostrar i +1  mês: R$ total
+            div_mensagem.innerHTML += `<br>${i + 1}º Mês: R$ ${total.toFixed(2)}`;
+            
+        }
+
+        div_mensagem.innerHTML += `<br>Total guardado: R$${total.toFixed(2)}`;
+
+    }
+</script>
