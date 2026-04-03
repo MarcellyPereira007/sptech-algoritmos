@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Impel Down</title>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="resultado">
+            <div class="conteudo-resultado">
+                <h1>Impel Down</h1>
+                <div class="imagem-div">
+                    <img src="img/luffyinicial.png" alt="Imagem do luffy confiante" class="imagem-resultado">
+                </div>
+            </div>
+        </div>
+
+        <div class="entradas">
+            <div class="vidro">
+                <form>
+                    <h2>Entradas de batalha</h2>
+                    
+                    <div class="inputs">
+                        <label>Quantidade de batalhas</label>
+                        <input type="number" placeholder="Ex: 10" id="ipt_qtd_batalhas">
+                    </div>
+                    
+                    <div class="inputs">
+                        <label>Quantidade de marinheiros</label>
+                        <input type="number" placeholder="Ex: 50" id="ipt_qtd_marinheiros">
+                    </div>
+                    
+                    <div class="inputs">
+                        <label>Carnes disponíveis</label>
+                        <input type="number" placeholder="Ex: 5" id="ipt_qtd_carnes">
+                    </div>
+                    
+                    <button onclick="batalha()" type="button" class="btn-iniciar">Iniciar batalha</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    function batalha() {
+        let qtdBatalhas = Number(document.getElementById('ipt_qtd_batalhas').value);
+        let qtdMarinheiros = Number(document.getElementById('ipt_qtd_marinheiros').value);
+        let carnesAtuais = Number(document.getElementById('ipt_qtd_carnes').value);
+
+        let htmlSaida = ``; 
+        let energiaAtual = 100;
+
+        for (let i = 1; i <= qtdBatalhas; i++) {
+            
+            htmlSaida += `<hr style="margin: 15px 0; border-color: rgba(255,255,255,0.2);">`;
+            
+            if (i > 1) { 
+                energiaAtual -= 10;
+                if (energiaAtual < 0) {
+                    energiaAtual = 0;
+                }
+            }
+
+            if (energiaAtual <= 0 && carnesAtuais <= 0) {
+                htmlSaida += `<p style="color: black;">🛞 Não é possível iniciar a ${i}º batalha, acabou a carne e a energia.</p>`;
+                continue;
+            }
+
+            htmlSaida += `<p><b>*${i}° Batalha iniciada:*</b></p>`;
+            
+            if (energiaAtual <= 0 && carnesAtuais > 0) {
+                carnesAtuais--;
+                energiaAtual = 100;
+            }
+            
+            htmlSaida += `<p>Quantidade de energia inicial: ${energiaAtual}</p>`;
+            
+            let marinheirosDerrotados = 0;
+
+            for (let m = 1; m <= qtdMarinheiros; m++) {
+                if (energiaAtual < 5) {
+                    if (carnesAtuais > 0) {
+                        carnesAtuais--;
+                        energiaAtual = 100;
+                    } else {
+                        break; 
+                    }
+                }
+                energiaAtual -= 5;
+                marinheirosDerrotados++;
+            }
+         
+            let vitoria = marinheirosDerrotados === qtdMarinheiros;
+            let textoResultado = vitoria ? "<span style='color: #8aff8a;'>Luffy saiu vitorioso</span>" : "<span style='color: black;'>Luffy foi derrotado</span>";
+            
+            htmlSaida += `<p>Resultado: ${textoResultado}, derrotando ${marinheirosDerrotados} marinheiro(s)</p>`;
+            htmlSaida += `<p>⚡ Energia Restante: ${energiaAtual}</p>`;
+            htmlSaida += `<p>🥩 Carnes Restantes: ${carnesAtuais}</p>`;
+        }
+
+        document.querySelector('.resultado').innerHTML = `
+            <div class="vidro" style="max-height: 80vh; overflow-y: auto; text-align: left; width: 90%; max-width: 500px; display: flex; flex-direction: column; gap: 8px;">
+                <h2 style="font-family: 'onepiecefont'; text-align: center; margin-bottom: 10px; font-size: 40px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);">Relatório</h2>
+                ${htmlSaida}
+            </div>
+        `;
+    }
+</script>
