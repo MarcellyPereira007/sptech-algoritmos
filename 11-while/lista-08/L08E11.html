@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Tabuada Colorida</title>
+</head>
+
+<body>
+    <header>
+        <h1>11. Tabuada Colorida </h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Crie um programa o qual: <br><br>
+
+            a) Pergunte, numa input ou lista suspensa (select/option), qual a tabuada que o usuário quer ver na tela (2
+            a 9);<br><br>
+
+            b) Pergunte até que número a tabuada deve ser construída;<br><br>
+
+            c) Ao clicar no botão “Ver Tabuada”, exiba abaixo a tabuada como neste exemplo (considerando que o usuário
+            escolheu a tabuada do 3 e para ir até o 12). <br><br>
+
+            d) Observar que quando o multiplicador for ímpar, a linha apareça na cor vermelha e quando for par, na cor azul. ex: "3 x 1 = 3" aparecer tudo em vermelho, mas "3 x 4 = 12" aparece tudo em azul.   
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Escolha qual tabuada você deseja ver</label> <br>
+        <select id="select_tabuada">
+            <option selected value="0">Selecione um número no menu</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select> <br> <br>
+
+        <label>Digite até que número deseja ver a tabuada</label> <br>
+        <input type="number" id="ipt_limite" placeholder="Digite o número aqui"><br><br>
+
+        <button onclick="tabuada()">Ver Tabuada</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    function tabuada () {
+        div_mensagem.innerHTML = ``;
+        var tabuada = document.getElementById('select_tabuada').value;
+        let contador = 1;
+        var limite = Number(ipt_limite.value);
+        let resultado = 0;
+
+        if (tabuada == 0) {
+            alert("Escolha um valor no menu de seleção");
+        } else {
+            while (contador <= limite){
+                resultado = tabuada * contador;
+                if (contador % 2 == 0) {
+                    div_mensagem.innerHTML += `<p style="color: lightskyblue;">${tabuada} X ${contador} = ${resultado}</p><br>`;
+                } else {
+                    div_mensagem.innerHTML += `<p style="color: #f54c4c;">${tabuada} X ${contador} = ${resultado}</p><br>`;
+                }
+                contador++;
+            }
+        }
+        
+    }
+
+</script>

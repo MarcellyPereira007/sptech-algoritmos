@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="resultado"></div>
+</body>
+<script>
+
+    let numero_digitado = prompt("Tente acertar o número:");
+
+    //O usuário não sabe, mas a resposta é 42
+
+    while(numero_digitado != 42){
+        numero_digitado = prompt("Tente outro: ")
+    }
+    
+    alert("parabéns, é isso!")
+
+    // se o usuário tivesse 50 tentativas para acertar,
+    // seria melhor o for:
+    // for(let i = 0; i < 50; i++){
+        
+    // }
+
+</script>
+</html>

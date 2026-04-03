@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Pares no intervalo</title>
+</head>
+
+<body>
+    <header>
+        <h1>9. Pares no intervalo</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Crie um programa o qual: <br> <br>
+
+            a) Solicite um intervalo crescente de valores numéricos<br> <br>
+
+            b) Ao clicar num botão "S2 Pares"...<br> <br>
+
+            c) Exiba, debaixo do botão, todos os números pares contidos no intervalo.
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Digite o primeiro número do intervalo</label> <br>
+        <input type="number" id="ipt_num1" placeholder="Digite o número aqui"><br><br>
+
+        <label>Digite o segundo número do intervalo</label> <br>
+        <input type="number" id="ipt_num2" placeholder="Digite o número aqui"><br><br>
+
+        <button onclick="pares()">S2 Pares</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+
+    function pares () {
+        div_mensagem.innerHTML = ``;
+        let num1 = Number(ipt_num1.value);
+        let num2 = Number(ipt_num2.value);
+
+        if (num1 > num2) {
+            let passador = num1;
+            num1 = num2;
+            num2 = passador;
+        }
+
+        while (num1 <= num2){
+            if (num1 % 2 == 0){
+                div_mensagem.innerHTML += `<br>${num1}`;
+            }
+            num1++
+        }
+    }
+</script>

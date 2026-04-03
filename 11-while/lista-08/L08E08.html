@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Papagaio Falante</title>
+</head>
+
+<body>
+    <header>
+        <h1>8. Papagaio Falante </h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Crie um programa o qual: <br><br>
+
+            a) Pergunte ao usuário um número;<br><br>
+
+            b) Pergunte ao usuário uma frase.<br><br>
+
+            c) Ao clicar num botão "Papagaio", a frase é exibida N vezes em N alerts, onde N é o número informado em a)
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Digite um número</label> <br>
+        <input type="number" id="ipt_numero" placeholder="Digite o número aqui"><br><br>
+
+        <label>Digite uma frase</label> <br>
+        <input type="text" id="ipt_frase" placeholder="Digite a frase aqui"><br><br>
+
+        <button onclick="papagaio()">Papagaio</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    function papagaio () {
+        let contador = 1;
+        let frase = document.getElementById('ipt_frase').value;
+        let numero = Number(ipt_numero.value);
+
+        while (contador <= numero){
+            alert(frase);
+            contador++;
+        }
+    }
+
+</script>

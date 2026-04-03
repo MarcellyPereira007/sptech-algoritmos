@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Contagem simples</title>
+</head>
+
+<body>
+    <header>
+        <h1>1. Contagem Simples </h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Crie um programa o qual: <br><br>
+
+            a) Ao clicar num botão "Contar"...<br><br>
+
+            b) Exiba, debaixo do botão, os números de 1 a 15, um embaixo do outro.
+        </p>
+    </div>
+
+    <div class="entradas">
+        <button onclick="contar()">Contar</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    function contar() {
+        contador = 1;
+
+        while(contador <= 15){
+            div_mensagem.innerHTML += `<br>${contador}`;
+            contador ++;
+        }
+    }
+
+</script>

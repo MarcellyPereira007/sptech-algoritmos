@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Números Misteriosos</title>
+</head>
+
+<body>
+    <header>
+        <h1>5. Números Misteriosos</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Crie um programa o qual: <br><br>
+
+            a) Ao clicar num botão "Números cabalísticos"...<br><br>
+
+            c) Exiba, debaixo do botão, os números de 1 a 30, um embaixo do outro, PORÉM, não devem aparecer os números
+            cabalísticos 3, 4, 7, 10 e 12.<br><br>
+
+            OBS: não se atenha ao termo "cabalístico", o que importa é somente travar essa sequência de números!
+        </p>
+    </div>
+
+    <div class="entradas">
+        <button onclick="cabal()">Números cabalísticos</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    function cabal (){
+        div_mensagem.innerHTML = ``
+        let contador = 1;
+
+        while (contador <= 30) {
+            if(contador != 3 && contador != 4 && contador != 7 && contador != 10 && contador != 12 ){
+                div_mensagem.innerHTML += `<br>${contador}`;
+            }
+            contador ++;
+        }
+    }
+
+</script>

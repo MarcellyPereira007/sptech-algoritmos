@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>S2 Pares</title>
+</head>
+
+<body>
+    <header>
+        <h1>4. S2 Pares</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Crie um programa o qual: <br><br>
+
+            a) Ao clicar num botão "S2 Pares"...<br><br>
+
+            b) Exiba, debaixo do botão, todos os números pares de 0 a 100, um embaixo do outro
+        </p>
+    </div>
+
+    <div class="entradas">
+
+        <button onclick="pares()">S2 Pares</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    function pares(){
+        div_mensagem.innerHTML = ``
+        let contador = 2;
+
+        while (contador <= 100) {
+            div_mensagem.innerHTML += `<br>${contador}`;
+            contador = contador + 2;
+        }
+    }
+
+</script>
