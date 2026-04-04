@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+@font-face {
+    font-family: 'onepiecefont'; 
+    src: url('img/onepiecefont.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-image: url('img/sanjibg.png');
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    padding: 100px;
+}
+
+.vidrinho {
+    background-color: #a3969243;
+    width: 50vw;
+    height: 50vh;
+    backdrop-filter: blur(05px);
+    border-left: 1px solid rgba(255, 255, 255, 0.203);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.238);
+    border-radius: 20px;
+    box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.274);
+    text-align: center;
+    padding: 20px;
+}
+
+header {
+    font-family: 'onepiecefont';
+    font-size: 40px;
+    color: #234086;
+    margin: 10px;
+}
+
+.botoes {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 40px;
+    justify-content: center;
+    margin: 10px;
+}
+
+.botoes button{
+    background-color: transparent;
+    border-radius: 10px;
+    border: solid 1px;
+    width: 100px;
+    cursor: pointer;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 14px;
+    color: #234086;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.205);
+    transform: translateY(-3px);
+    box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.243);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.botoes button:focus { outline: 2px solid #234086; }
+
+div[role="tabpanel"] {
+    display: none;
+}
+
+.entradas {
+    font-family: 'Montserrat';
+    font-size: 16px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.entradas button {
+    font-family: 'Montserrat';
+    font-size: 16px;
+    height: 35px;
+    width: 250px;
+    margin-top: 20px;
+    background-color: #234086;
+    color: #f6f4e8;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+input {
+    font-family: 'Montserrat';
+    width: 250px;
+    height: 30px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: transparent;
+    border-color: #234086;
+}
+
+
+
+.saida {
+    margin: 20px;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    font-weight: bold;
+    color: #234086;
+}
+
+
+
+

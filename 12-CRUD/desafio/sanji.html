@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Sanji Desafio</title>
+</head>
+
+<body>
+    <div class="vidrinho">
+        <header>
+            <h1>CRUD do Sanji</h1>
+        </header>
+
+        <div class="botoes">
+            <button role="tablist">Cadastrar</button>
+            <button role="tablist">Verificar</button>
+            <button role="tablist">Pesquisar</button>
+            <button role="tablist">Exibir</button>
+            <button role="tablist">Alterar</button>
+            <button role="tablist">Deletar</button>
+        </div>
+        <div class="entradas">
+            <!--Cadastrar-->
+            <div class="cadastrar" role="tabpanel">
+                <label>Cadastre a comida no estoque:</label><br>
+                <input type="text" id="ipt_novoestoque"><br><br>
+
+                <button onclick="cadEstoque()">Cadastrar estoque</button> <br>
+            </div>
+
+            <!--Verificar-->
+            <div class="verificar" role="tabpanel">
+                <label>Verifique se a quantidade de comída é o suficiente</label><br>
+                <button onclick="verificarQntd()">Verificar quantidade</button>
+            </div>
+
+            <!--Pesquisar-->
+            <div class="pesquisar" role="tabpanel">
+                <label>Pesquise uma comida no estoque:</label><br>
+                <input type="text" id="ipt_pesquisa"><br><br>
+
+                <button onclick="pesquisar()">Pesquisar</button> <br>
+            </div>
+
+            <!--Exibir-->
+            <div class="exibir" role="tabpanel">
+                <label>Clique para ver todo o estoque</label><br>
+                <button onclick="exibir()">Exibir estoque</button>
+            </div>
+
+            <!--Alterar-->
+            <div class="alterar" role="tabpanel">
+                <div class="entradinha">
+                    <label>Nome atual da comida:</label><br>
+                    <input type="text" id="ipt_atual"><br>
+                </div>
+                <div class="entradinha">
+                    <label>Novo nome da comida:</label><br>
+                    <input type="text" id="ipt_novo"><br>
+                </div>
+                    <button onclick="alterar()">Alterar nome</button>
+            </div>
+
+            <!--Deletar-->
+            <div class="deletar" role="tabpanel">
+                <label>Qual comida deseja remover?</label><br>
+                <input type="text" id="ipt_deletar"><br><br>
+                <button onclick="deletar()">Remover comida</button>
+            </div>
+
+            <div class="saida" id="saida"></div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+<script>
+    // lógica das abas
+    // Seleciona todas as abas da nav
+    const abas = document.querySelectorAll('button[role="tablist"]');
+    // Seleciona todas as abas de conteudo
+    const tabs = document.querySelectorAll('div[role="tabpanel"]');
+
+    // Loop pra ir em todas abas
+    for (let i = 0; i < abas.length; i++) {
+
+        abas[i].onclick = function () {
+
+            // Esconde tudo
+            for (let j = 0; j < tabs.length; j++) {
+                tabs[j].style.display = "none";
+            }
+
+            saida.innerHTML = ``;
+            // Mostra a aba com o mesmo índice (q foi clicada)
+            tabs[i].style.display = "block";
+        };
+    }
+
+    let estoque = [];
+
+    function cadEstoque() {
+        let novaComida = document.getElementById('ipt_novoestoque').value;
+
+        ipt_novoestoque.value = ``;
+
+        estoque.push(novaComida);
+    }
+
+    function verificarQntd() {
+        saida.innerHTML = ``
+        let quantidade = estoque.length;
+        let mensagem = "";
+
+        if (quantidade < 3) {
+            mensagem = "Desse jeito, o Luffy devora até o navio"
+        } else if (quantidade <= 7) {
+            mensagem = "O comilão do Luffy não vai deixar sobrar nenhuma comida";
+        } else if (quantidade <= 10) {
+            mensagem = "Assim, talvez sobre um pouco para a tripulação";
+        } else {
+            mensagem = "Desse jeito vai ter comida para todo mundo e ainda consigo guardar um pouco para a senhorita Nami!";
+        }
+        saida.innerHTML = `${mensagem}<br>`;
+    }
+
+    function pesquisar() {
+        let comida = document.getElementById('ipt_pesquisa').value;
+        let vezes = 0;
+
+        for (let i = 0; i < estoque.length; i++) {
+            if (comida.toUpperCase() == estoque[i].toUpperCase()) {
+                vezes++;
+            }
+        }
+
+        if (vezes >= 1) {
+            saida.innerHTML = `Temos ${comida} e há ${vezes} unidade(s) dessa comida <br>`;
+        } else {
+            saida.innerHTML = `Alguém vai ter que comprar ${comida}, tá fazendo falta...`;
+        }
+    }
+
+    function exibir() {
+        let jafoi = [];
+        saida.innerHTML = ``;
+
+        for (let i = 0; i < estoque.length; i++) {
+
+            if (jafoi.includes(estoque[i].toUpperCase())) {
+                continue;
+            }
+
+            let vezes = 0;
+            let un = "unidades"
+            for (let j = 0; j < estoque.length; j++) {
+
+                if (estoque[i].toUpperCase() == estoque[j].toUpperCase()) {
+                    vezes++;
+                }
+            }
+
+            if (vezes == 1) {
+                un = "unidade";
+            }
+
+            jafoi.push(estoque[i]);
+
+            saida.innerHTML += `${estoque[i]} (${vezes} ${un}) <br>`;
+        }
+    }
+
+    function alterar() {
+        let nomeAtual = document.getElementById('ipt_atual').value;
+        let nomeNovo = document.getElementById('ipt_novo').value;
+        let encontrou = false;
+
+        for (let i = 0; i < estoque.length; i++) {
+            if (estoque[i].toUpperCase() == nomeAtual.toUpperCase()) {
+                estoque[i] = nomeNovo;
+                encontrou = true;
+            }
+        }
+
+        if (encontrou) {
+            saida.innerHTML = `A comida '${nomeAtual}' foi alterada para '${nomeNovo}'!`;
+        } else {
+            saida.innerHTML = `A comida '${nomeAtual}' não foi encontrada no estoque.`;
+        }
+    }
+
+    function deletar() {
+        let comidaPDeletar = document.getElementById('ipt_deletar').value;
+        let encontrou = false;
+
+        // ir de traás p frente
+        for (let i = estoque.length - 1; i >= 0; i--) {
+            if (estoque[i].toUpperCase() == comidaPDeletar.toUpperCase()) {
+                estoque.splice(i, 1); // apaga 1 item na posição i
+                encontrou = true;
+            }
+        }
+
+        if (encontrou) {
+            saida.innerHTML = `A comida '${comidaPDeletar}' foi removida do estoque.`;
+        } else {
+            saida.innerHTML = `A comida '${comidaPDeletar}' não está no estoque.`;
+        }
+    }
+</script>
