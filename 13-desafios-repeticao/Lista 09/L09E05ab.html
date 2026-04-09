@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio do Desafio do Desafio</title>
+</head>
+
+<body>
+    <header>
+        <h1>Desafio do Desafio do Desafio</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            5a - <br>
+            Melhore o exercício 2 com os seguintes desafios extras:<br><br>
+
+            a) Resolver sem criar um novo vetor, caso tenha criado.<br><br>
+
+            5b - <br>
+            a) Inverter apenas letras e manter símbolos na posição.<br><br>
+
+            Exemplo: "a,b$c" vira "c,b$a"
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Escreva um texto:</label> <br>
+        <input type="text" id="ipt_texto" placeholder="Digite  o texto"><br><br>
+        <button onclick="inverterTexto()">Inverter</button>
+
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+
+    function inverterTexto() {
+        const maiusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const minusculas = "abcdefghijklmnopqrstuvwxyz";
+
+        let string = ipt_texto.value;
+
+        let letras = [];
+        for (let i = string.length - 1; i >= 0; i--) {
+            for (let j = 0; j < 26; j++) {
+                if (string[i] == maiusculas[j] || string[i] == minusculas[j]) {
+                    letras[letras.length] = string[i];
+                }
+            }
+        }
+
+        let string_invertida = "";
+        let indice = 0;
+        for (let i = 0; i < string.length; i++) {
+            let letra = false;
+
+            for (let j = 0; j < 26; j++) {
+                if (string[i] == maiusculas[j] || string[i] == minusculas[j]) {
+                    letra = true;
+                }
+            }
+
+            if (letra) {
+                string_invertida += letras[indice];
+                indice++;
+            } else {
+                string_invertida += string[i];
+            }
+        }
+
+        div_mensagem.innerHTML = string_invertida;
+    }
+
+</script>

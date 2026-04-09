@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>Encontrar elementos duplicados</title>
+</head>
+
+<body>
+    <header>
+        <h1>1.b Encontrar elementos duplicados:</h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Crie uma segunda versão do exercício 1a, onde não é permitido usar métodos prontos como: filter, map,
+            reduce, includes, indexOf, lastIndexOf <br><br>
+
+            Use apenas: laços (for, while) e estruturas básicas (arrays, variáveis)
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Adicione um elemento no vetor:</label> <br>
+        <input type="text" id="ipt_elemento" placeholder="Digite o elemento a ser adicionado"><br><br>
+        <button onclick="add()">Adicionar</button>
+        <button onclick="exibir_duplicados()">Exibir duplicados</button>
+        <button onclick="remove_duplicados()">Remover duplicatas</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+
+    // Criar um vetor pra ser usado na página
+    let vetor = [];
+
+    // Função pra adicionar elemento no vetor usando push
+    function add() {
+        vetor[vetor.length] = ipt_elemento.value;
+        ipt_elemento.value = '';
+    }
+
+    //Função pra verificar e mostrar os elementos duplicados
+    function exibir_duplicados() {
+        let duplicados = [];
+
+        for (let i = 0; i < vetor.length; i++) {
+            let elementoComparado = vetor[i];
+            let vezesQueElementoApareceu = 0;
+
+            for (let j = 0; j < vetor.length; j++) {
+                if (elementoComparado == vetor[j]) {
+                    vezesQueElementoApareceu++;
+                }
+            }
+
+            if (vezesQueElementoApareceu > 1) {
+                let jaEstaNaLista = false;
+
+                for (let k = 0; k < duplicados.length; k++) {
+                    if (duplicados[k] == elementoComparado) {
+                        jaEstaNaLista = true;
+                        break;
+                    }
+                }
+
+                if (jaEstaNaLista == false) {
+                    duplicados[duplicados.length] = elementoComparado;
+                }
+            }
+        }
+
+        if (duplicados.length == 0) {
+            div_mensagem.innerHTML = "Não possui elementos duplicados";
+        } else {
+            div_mensagem.innerHTML = duplicados + "<br>";
+        }
+
+        exibirVetor();
+    }
+
+    function remove_duplicados() {
+        let vetorLimpo = [];
+
+        for (i = 0; i < vetor.length; i++) {
+            let quantos_tem = 0;
+
+            for (j = 0; j < vetor.length; j++) {
+                if (vetor[i] == vetor[j]) {
+                    quantos_tem++;
+                };
+            }
+
+            if (quantos_tem == 1) {
+                vetorLimpo[vetorLimpo.length] = vetor[i];
+            }
+        }
+
+        vetor = vetorLimpo;
+
+        div_mensagem.innerHTML = vetor;
+
+        exibirVetor();
+    }
+
+    function exibirVetor() {
+        div_mensagem.innerHTML += `<br> Vetor atual:`;
+        for (i = 0; i < vetor.length; i++) {
+            div_mensagem.innerHTML += `<br> ${vetor[i]}`;
+        }
+    }
+
+</script>

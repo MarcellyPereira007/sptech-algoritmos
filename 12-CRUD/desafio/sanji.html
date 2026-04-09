@@ -198,7 +198,8 @@
         let comidaPDeletar = document.getElementById('ipt_deletar').value;
         let encontrou = false;
 
-        // ir de traás p frente
+        
+        // ir de traás p frente para que não tenha o bug de realocação
         for (let i = estoque.length - 1; i >= 0; i--) {
             if (estoque[i].toUpperCase() == comidaPDeletar.toUpperCase()) {
                 estoque.splice(i, 1); // apaga 1 item na posição i

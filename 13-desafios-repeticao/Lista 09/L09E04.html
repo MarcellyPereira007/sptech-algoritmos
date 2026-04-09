@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poupança</title>
+</head>
+
+<body>
+    <h2>Poupança</h2>
+    Entre com o valor mensal de depósito: <input id="ipt_deposito" type="number"> <br>
+    Entre com a quantidade de meses: <input id="ipt_meses" type="number"> <br>
+    Entre com o percentual de juros: <input id="ipt_juros" type="number"> <br> <br>
+    Qual é o seu sonho: <input id="ipt_sonho"> <br>
+    Qual o valor do seu sonho: <input id="ipt_valorSonho" type="number">
+    <button onclick="projetar()">Projetar</button><br> <br>
+    <div id="div_msg"></div>
+</body>
+
+<script>
+    function projetar() {
+        let mensagem = "";
+
+        deposito = Number(ipt_deposito.value);
+        meses = Number(ipt_meses.value);
+        juros = Number(ipt_juros.value);
+        sonho = ipt_sonho.value;
+        valorSonho = Number(ipt_valorSonho.value);
+
+        if (
+            deposito > 0 &&
+            (meses > 0 && meses % 1 == 0) &&
+            (juros > 0 && juros < 10) &&
+            sonho.length >= 3 &&
+            valorSonho > deposito 
+        ) {
+            let valorTotal = 0;
+
+            for (i = 0; i < meses; i++) {
+                let valorInicial = valorTotal;
+                rendimento_juros = valorInicial*(juros/100);
+                valorTotal += deposito+rendimento_juros;
+
+                mensagem += `<br>Mẽs = ${i+1} - Valor inicial = ${valorInicial.toFixed(2)} - Juros = ${rendimento_juros.toFixed(2)} - Depósito = ${deposito} - Valor total = ${valorTotal.toFixed(2)}`;
+            }
+
+            let diferenca = valorTotal - valorSonho;
+
+            if (diferenca >= 0) mensagem += `<br><br><p>Parabéns você é um POUPADOR, além do seu sonho de ${sonho} ainda sobrou R$${diferenca.toFixed(2)} para outras aquisições</p>`
+            else mensagem += `<br><br><p style="color: red">Você precisa poupar um pouco mais. Para o seu sonho de ${sonho} ainda falta R$ ${diferenca.toFixed(2)*(-1)}</p>`
+
+            div_msg.innerHTML = mensagem;
+        }
+    }
+
+</script>
+
+</html>

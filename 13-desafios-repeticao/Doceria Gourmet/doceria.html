@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doceria Gourmet</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Dori Doces</h1>
+        </header>
+
+        <div class="conteudo">
+            <div class="card" id="div_macarons">
+                <label>Macarons</label>
+                <input type="number" placeholder="Digite a quantidade" id="ipt_qtdMacarons">
+                <input type="number" placeholder="Digite o valor da unidade" id="ipt_precoMacarons">
+            </div>
+
+            <div class="card" id="div_brigadeiros">
+                <label>Brigadeiros</label>
+                <input type="number" placeholder="Digite a quantidade" id="ipt_qtdBrigadeiros">
+                <input type="number" placeholder="Digite o valor da unidade" id="ipt_precoBrigadeiros">
+            </div>
+
+            <div class="card" id="div_cupcakes">
+                <label>Cupcakes</label>
+                <input type="number" placeholder="Digite a quantidade" id="ipt_qtdCupcakes">
+                <input type="number" placeholder="Digite o valor da unidade" id="ipt_precoCupcakes">
+            </div>
+
+            <div class="card" id="div_cheesecakes">
+                <label>Cheesecakes</label>
+                <input type="number" placeholder="Digite a quantidade" id="ipt_qtdCheesecakes">
+                <input type="number" placeholder="Digite o valor da unidade" id="ipt_precoCheesecakes">
+            </div>
+
+            <button onclick="verificar()">Verificar Vendas</button>
+
+            <div id="resultado"></div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function verificar() {
+        let contador = 0;
+        let qtdItens = 0;
+        let qtdMacarons = Number(ipt_qtdMacarons.value);
+        let qtdBrigadeiros = Number(ipt_qtdBrigadeiros.value);
+        let qtdCupcakes = Number(ipt_qtdCupcakes.value);
+        let qtdCheesecakes = Number(ipt_qtdCheesecakes.value);
+
+        let precoMacarons = Number(ipt_precoMacarons.value);
+        let precoBrigadeiros = Number(ipt_precoBrigadeiros.value);
+        let precoCupcakes = Number(ipt_precoCupcakes.value);
+        let precoCheesecakes = Number(ipt_precoCheesecakes.value);
+
+        let mensagem = "";
+
+
+        qtdItens = qtdMacarons + qtdBrigadeiros + qtdCupcakes + qtdCheesecakes;
+        console.log(qtdItens);
+
+
+        
+            for (let m = 0; m <= qtdMacarons; m++) {
+                if (qtdMacarons >= 0) {
+                    resultado.innerHTML += `Venda ${contador} - Imagem - R$${precoMacarons} <br>`;
+                }
+                contador++
+            }
+            
+
+
+        
+            for (let b = 0; b <= qtdBrigadeiros; b++) {
+    
+                if (qtdBrigadeiros > 0) {
+                    resultado.innerHTML += `Venda ${contador} - Imagem - R$${precoBrigadeiros} <br>`;
+                }
+                contador++
+            }
+
+
+            for (let c = 0; c <= qtdCupcakes; c++) {
+                
+                if (qtdCupcakes > 0) {
+                    resultado.innerHTML += `Venda ${contador} - Imagem - R$${precoCupcakes} <br>`;
+                }
+                 contador++
+            }
+
+
+
+      
+            for (let cc = 0; cc <= qtdCheesecakes; cc++) {
+                
+                 if (qtdCheesecakes > 0) {
+                    resultado.innerHTML += `Venda ${contador} - Imagem - R$${precoCheesecakes} <br>`;
+                 }
+
+                 contador++
+            }
+        
+
+
+    }
+</script>

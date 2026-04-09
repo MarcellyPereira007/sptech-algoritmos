@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon:wght@400;700&display=swap" rel="stylesheet">
+    <title>3 a e b</title>
+</head>
+
+<body>
+    <header>
+        <h1>Ex 3 a e b juntos </h1>
+    </header>
+
+    <div class="enunciado">
+        <p>
+            Crie um programa o qual: <br><br>
+
+            a) O usuário tenha um campo para digitar uma palavra;<br><br>
+
+            b) Ao clicar no botão "Validar Palíndromo", deve aparecer na tela a mensagem dizendo se a palavra é um
+            palíndromo ou não. Ex: O nome "Ana" é um palíndromo, porque ao contrário permanece sendo "Ana";<br><br>
+
+            OBS: Ignore letras maiúsculas e minúsculas e também espaços em branco.<br><br>
+
+            Exemplo: Subi no onibus deve ser considerado palindromo<br><br>
+
+            c) Exiba na tela também a palavra digitada pelo usuário escrita ao contrário.<br><br>
+
+            OBS: Um palíndromo é uma palavra, frase, número ou sequência de caracteres que pode ser lida da mesma forma
+            de trás para frente e de frente para trás.
+        </p>
+    </div>
+
+    <div class="entradas">
+        <label>Escreva um texto:</label> <br>
+        <input type="text" id="ipt_texto" placeholder="Digite o texto"><br><br>
+        <button onclick="validar()">Validar palíndromo</button>
+    </div>
+
+    <div class="div_mensagem" id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    function validar() {
+        let maiusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let minusculas = "abcdefghijklmnopqrstuvwxyz";
+
+        let mensagem = "";
+        let texto = ipt_texto.value;
+
+        let texto_invertido = inverterTexto();
+
+        mensagem += `${texto_invertido} <br><br>`;
+
+        let texto_minusculo = "";
+        for (i = 0; i < texto.length; i++) {
+            for (j = 0; j < 26; j++) {
+                if (texto[i] == maiusculas[j]) texto_minusculo += minusculas[j];
+
+                else if (texto[i] == minusculas[j]) texto_minusculo += texto[i];
+            }
+        }
+
+        texto_invertido = "";
+        for (i = texto_minusculo.length - 1; i >= 0; i--) {
+            texto_invertido += texto_minusculo[i];
+        }
+
+        if (texto_invertido == texto_minusculo) mensagem += "É um palíndromo";
+
+        else mensagem += "Não é um palíndromo";
+
+        div_mensagem.innerHTML = `${mensagem}`;
+    }
+
+    function inverterTexto() {
+        let texto = ipt_texto.value;
+
+        let texto_invertido = "";
+        for (i = texto.length - 1; i >= 0; i--) {
+            texto_invertido += texto[i];
+        }
+
+        return texto_invertido;
+    }
+
+</script>
