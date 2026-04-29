@@ -11,32 +11,91 @@
 
     <div class="container">
         <div class="areas">
-            <h1>SOMA</h1>
+            <h2>SOMA</h2>
+            <label for="ipt_num1Soma">Insira o número 1</label>
+            <input type="number" id="ipt_num1Soma">
+
+            <label for="ipt_num2Soma">Insira o número 2</label>
+            <input type="number" id="ipt_num2Soma">
+
+            <button onclick="calcularSoma()">CALCULAR SOMA</button>
+            <div id="mensagemSoma"></div>
         </div>
 
         <div class="areas">
-            <h1>CALCULAR DISTNCIA </h1>
+            <h2>CALCULAR DISTÂNCIA </h2>
+            <label for="ipt_x1Distancia">Insira o valor x1</label>
+            <input type="number" id="ipt_x1Distancia">
+
+            <label for="ipt_y1Distancia">Insira o valor y1</label>
+            <input type="number" id="ipt_y1Distancia">
+
+            <label for="ipt_x2Distancia">Insira o valor x2</label>
+            <input type="number" id="ipt_x2Distancia">
+
+            <label for="ipt_y2Distancia">Insira o valor y2</label>
+            <input type="number" id="ipt_y2Distancia">
+
+            <button onclick="calcularDistancia()">CALCULAR DISTÂNCIA</button>
+            <div id="mensagemDistancia"></div>
         </div>
 
         <div class="areas">
-            <h1>SOMA</h1>
+            <h2>CONVERTER SEGUNDOS</h2>
+            <label for="ipt_segundos">Insira os segundos</label>
+            <input type="number" id="ipt_segundos">
+            
+            <button onclick="calcularTempo()">CALCULAR TEMPO</button>
+            <div id="mensagemTempo"></div>
         </div>
 
         <div class="areas">
-            <h1>SOMA</h1>
+            <h2>VALIDAR NÚMERO PRIMO</h2>
+            <label for="ipt_primo">Digite um número</label>
+            <input type="number" id="ipt_primo">
+            
+            <button onclick="validaPrimo()">VALIDAR</button>
+            <div id="mensagemPrimo"></div>
         </div>
 
         <div class="areas">
-            <h1>SOMA</h1>
+            <h2>CALCULAR FATORIAL</h2>
         </div>
 
         <div class="areas">
-            <h1>SOMA</h1>
+            <h2>CALCULAR MÉDIA</h2>
         </div>
 
+        <div class="areas">
+            <h2>CALCULAR MÉDIA PONDERADA</h2>
+        </div>
     </div>
 
 </body>
+<script src="matematica.js"></script>
+
+<script>
+
+    function calcularSoma(){
+        mensagemSoma.innerHTML = `Resultado da soma é ${soma(Number(ipt_num1Soma.value), Number(ipt_num2Soma.value))}`;
+    }
+
+    function calcularDistancia(){
+        mensagemDistancia.innerHTML = `A distância é ${distancia(Number(ipt_x1Distancia.value), Number(ipt_y1Distancia.value), Number(ipt_x2Distancia.value), Number(ipt_y2Distancia.value))}`;
+    }
+
+    function calcularTempo() {
+        mensagemTempo.innerHTML = `O tempo é ${converterParaHoraMinutoSegundo(Number(ipt_segundos.value))}`;
+    }
+
+    function validaPrimo() {
+        console.log("Numero sendo verificado " + Number(ipt_primo.value));
+        
+        mensagemPrimo.innerHTML = `O número é primo? ${ePrimo(Number(ipt_primo))}`;
+    }
+
+
+</script>
 
 </html>
 

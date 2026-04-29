@@ -23,7 +23,7 @@ function soma(numero1, numero2) {
 
 }
 
-function calcularDistancia(x1, y1, x2, y2) {
+function distancia(x1, y1, x2, y2) {
     if (x1 == null || x1 == undefined) {
         console.log("O x1 não pode ser nulo ou indefinido - distancia");
         return
@@ -58,7 +58,8 @@ function calcularDistancia(x1, y1, x2, y2) {
         return
     }
 
-    let distancia = Math.sqrt(((x2 - x1) ** 2) + ((y2 - y1) ** 2));
+    let distancia = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+    console.log(distancia);
     return distancia
 }
 
@@ -90,18 +91,17 @@ function ePrimo(numero) {
         return
     }
 
-    if (numero <= 1) return false;
-    if (numero <= 3) return true;
-
-    if (numero % 2 === 0 || numero % 3 === 0) return false;
-
-    for (let i = 5; i * i <= numero; i += 6) {
-        if (numero % i === 0 || numero % (i + 2) === 0) return false;
+    let resultado = true;
+    // Se for divisivel por ele mesmo
+    for (let i = 2; i < numero; i++) {
+        if (numero % i == 0){
+            return resultado;
+        }
     }
-    return true;
+    return resultado;
 }
 
-function calcularFatorial (numero){
+function calcularFatorial(numero) {
     if (numero == null || numero == undefined) {
         console.log("O numero não pode ser nulo ou indefinido - fatorial");
         return
@@ -110,14 +110,14 @@ function calcularFatorial (numero){
         console.log("Tipo inválido para o numero - fatorial")
         return
     }
-    if (numero % 1 != 0){
+    if (numero % 1 != 0) {
         console.log("O número deve ser inteiro - fatorial")
         return
     }
 
     let resultado;
 
-    for (let i = 1; i <= n; i++) {
+    for (let i = 1; i <= numero; i++) {
         resultado *= i;
     }
 
@@ -145,7 +145,7 @@ function calcularMedia(lista) {
     return media
 }
 
-function calcularMediaPonderada(vetorMedias, vetorPesos){
+function calcularMediaPonderada(vetorMedias, vetorPesos) {
     if (vetorMedias == null || vetorMedias == undefined) {
         console.log("O vetorMedias não pode ser nulo ou indefinido - Media ponderada");
         return
