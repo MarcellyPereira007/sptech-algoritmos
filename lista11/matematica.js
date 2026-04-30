@@ -1,10 +1,10 @@
 function soma(numero1, numero2) {
-    if (numero1 == null || numero1 == undefined) {
+    if (numero1 == "" || numero1 == undefined) {
         console.log("O primeiro número não pode ser nulo ou indefinido - soma");
         return
 
     }
-    if (numero2 == null || numero2 == undefined) {
+    if (numero2 == "" || numero2 == undefined) {
         console.log("O segundo número não pode ser nulo ou indefinido - soma");
         return
     }
@@ -91,14 +91,23 @@ function ePrimo(numero) {
         return
     }
 
-    let resultado = true;
-    // Se for divisivel por ele mesmo
-    for (let i = 2; i < numero; i++) {
-        if (numero % i == 0){
-            return resultado;
+    let eprimo = false;
+
+    // só faz se for ímpar
+    if (numero % 2 != 0) {
+
+        for (let i = 2; i <= numero / 2; i++) {
+
+            if (numero % i == 0) {
+                eprimo = false;
+            }
+
         }
     }
-    return resultado;
+
+    if (numero == 2) eprimo = true
+    if (numero == 1) eprimo = false
+    return eprimo;
 }
 
 function calcularFatorial(numero) {
@@ -108,10 +117,6 @@ function calcularFatorial(numero) {
     }
     if (typeof numero != "number") {
         console.log("Tipo inválido para o numero - fatorial")
-        return
-    }
-    if (numero % 1 != 0) {
-        console.log("O número deve ser inteiro - fatorial")
         return
     }
 
